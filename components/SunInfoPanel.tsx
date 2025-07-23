@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { MapPin, Clock, Sun, Compass } from 'lucide-react-native';
-import * as Location from 'expo-location';
-import { SunPosition, CompassMode } from '@/types';
+import { CompassMode, SunPosition } from '@/types';
 import { getTargetBearing } from '@/utils/solarCalculations';
+import * as Location from 'expo-location';
+import { Clock, Compass, MapPin, Sun } from 'lucide-react-native';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 interface SunInfoPanelProps {
   sunPosition: SunPosition | null;

@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function SettingsScreen() {
   return (
@@ -13,9 +13,9 @@ export default function SettingsScreen() {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>About Solar Compass</Text>
+          <Text style={styles.sectionTitle}>About Sunway</Text>
           <Text style={styles.description}>
-            Solar Compass uses your device's GPS and magnetometer to provide accurate directional guidance based on the sun's position. 
+            Sunway uses your device's GPS and magnetometer to provide accurate directional guidance based on the sun's position. 
             The app calculates the sun's azimuth angle using astronomical algorithms and your current location.
           </Text>
         </View>
@@ -48,10 +48,10 @@ export default function SettingsScreen() {
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            Solar Compass v1.0.0
+            Sunway v1.0.0
           </Text>
           <Text style={styles.footerSubtext}>
-            Built with Expo & React Native
+            Built By 'FranciumItIs' on Github
           </Text>
         </View>
       </ScrollView>

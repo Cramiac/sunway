@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Sun, Settings } from 'lucide-react-native';
+import { InfoIcon, Sun } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
@@ -25,18 +25,18 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Solar Compass',
+          title: 'Sunway',
           tabBarIcon: ({ size, color }) => (
             <Sun size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name="info"
         options={{
-          title: 'Settings',
+          title: 'Info',
           tabBarIcon: ({ size, color }) => (
-            <Settings size={size} color={color} />
+            <InfoIcon size={size} color={color} />
           ),
         }}
       />

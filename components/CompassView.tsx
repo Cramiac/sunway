@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Dimensions, Platform } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-  interpolate,
-} from 'react-native-reanimated';
+import { CompassMode, SunPosition } from '@/types';
+import { getTargetBearing } from '@/utils/solarCalculations';
 import { Magnetometer } from 'expo-sensors';
-import CompassRose from './CompassRose';
+import React, { useEffect, useState } from 'react';
+import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring
+} from 'react-native-reanimated';
 import CompassNeedle from './CompassNeedle';
-import { SunPosition, CompassMode } from '@/types';
-import { getTargetBearing, angleDifference } from '@/utils/solarCalculations';
+import CompassRose from './CompassRose';
 
 const { width } = Dimensions.get('window');
-const COMPASS_SIZE = Math.min(width * 0.8, 320);
+const COMPASS_SIZE = Math.min(width * 0.8, 290);
 
 interface CompassViewProps {
   sunPosition: SunPosition | null;

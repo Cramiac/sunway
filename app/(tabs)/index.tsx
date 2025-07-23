@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Alert, Dimensions } from 'react-native';
-import * as Location from 'expo-location';
-import { StatusBar } from 'expo-status-bar';
 import CompassView from '@/components/CompassView';
 import ModeToggle from '@/components/ModeToggle';
 import SunInfoPanel from '@/components/SunInfoPanel';
+import { CompassMode, SunPosition } from '@/types';
 import { calculateSunPosition } from '@/utils/solarCalculations';
-import { SunPosition, CompassMode } from '@/types';
+import * as Location from 'expo-location';
+import { StatusBar } from 'expo-status-bar';
+import React, { useEffect, useState } from 'react';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -33,7 +33,7 @@ export default function HomeScreen() {
     try {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        setError('Location permission is required for accurate solar compass functionality');
+        setError('Location permission is required for accurate Sunway functionality');
         setLoading(false);
         return;
       }
@@ -68,7 +68,7 @@ export default function HomeScreen() {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <Text style={styles.loadingText}>Initializing Solar Compass...</Text>
+        <Text style={styles.loadingText}>Initializing Sunway...</Text>
         <Text style={styles.loadingSubtext}>Getting your location</Text>
       </View>
     );
@@ -88,7 +88,7 @@ export default function HomeScreen() {
       <StatusBar style="light" />
       
       <View style={styles.header}>
-        <Text style={styles.title}>Solar Compass</Text>
+        <Text style={styles.title}>Sunway</Text>
         <ModeToggle mode={mode} onToggle={toggleMode} />
       </View>
 
