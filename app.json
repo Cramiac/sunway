@@ -30,6 +30,9 @@
         "projectId": "0af43ba4-98df-4ad5-97be-21a447df067c"
       }
     },
+    "android": {
+      "package": "com.nimje.sunway"
+    },
     "owner": "nimje"
   }
 }
