@@ -1,8 +1,8 @@
-import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
-import * as Haptics from 'expo-haptics';
-import { Sun, Moon } from 'lucide-react-native';
 import { CompassMode } from '@/types';
+import * as Haptics from 'expo-haptics';
+import { Moon, Sun } from 'lucide-react-native';
+import React from 'react';
+import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface ModeToggleProps {
   mode: CompassMode;
@@ -28,13 +28,13 @@ export default function ModeToggle({ mode, onToggle }: ModeToggleProps) {
       onPress={handleToggle}
       activeOpacity={0.8}
     >
-      <div style={styles.iconContainer}>
+      <View style={styles.iconContainer}>
         {isTowardsMode ? (
           <Sun size={20} color="#F8FAFC" />
         ) : (
           <Moon size={20} color="#F8FAFC" />
         )}
-      </div>
+      </View>
       
       <Text style={styles.text}>
         {isTowardsMode ? 'Towards Sun' : 'Away from Sun'}
