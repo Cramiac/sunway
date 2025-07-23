@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, Platform } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -26,25 +26,30 @@ export default function CompassView({ sunPosition, mode }: CompassViewProps) {
   const needleRotation = useSharedValue(0);
 
   useEffect(() => {
-    // Subscribe to magnetometer updates
-    const subscription = Magnetometer.addListener((data) => {
-      setMagnetometerData(data);
-      
-      // Calculate compass heading from magnetometer data
-      const heading = Math.atan2(data.y, data.x) * (180 / Math.PI);
-      const normalizedHeading = (heading + 360) % 360;
-      
-      // Rotate compass rose to align with magnetic north
-      compassRotation.value = withSpring(-normalizedHeading, {
-        damping: 15,
-        stiffness: 100,
+    if (Platform.OS !== 'web') {
+      // Subscribe to magnetometer updates
+      const subscription = Magnetometer.addListener((data) => {
+        setMagnetometerData(data);
+        
+        // Calculate compass heading from magnetometer data
+        const heading = Math.atan2(data.y, data.x) * (180 / Math.PI);
+        const normalizedHeading = (heading + 360) % 360;
+        
+        // Rotate compass rose to align with magnetic north
+        compassRotation.value = withSpring(-normalizedHeading, {
+          damping: 15,
+          stiffness: 100,
+        });
       });
-    });
 
-    // Set update interval
-    Magnetometer.setUpdateInterval(100);
+      // Set update interval
+      Magnetometer.setUpdateInterval(100);
 
-    return () => subscription.remove();
+      return () => subscription.remove();
+    } else {
+      // For web platform, use a mock magnetometer data
+      setMagnetometerData({ x: 1, y: 0, z: 0 });
+    }
   }, []);
 
   useEffect(() => {
